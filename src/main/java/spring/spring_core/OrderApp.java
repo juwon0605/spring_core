@@ -11,8 +11,14 @@ import spring.spring_core.order.OrderServiceImpl;
 public class OrderApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+//        MemberService memberService = new MemberServiceImpl();
+//        OrderService orderService = new OrderServiceImpl(memberRepository, discountPolicy);
+
+        //  AppConfig를 통한 생성자 주입(DI: Dependency Injection, 의존관계 주입)
+        //  관심사 분리: 객체를 생성하고 연결하는 역할과 실행하는 역할 분리
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
 
         Long memberId = 1L;
         Member member = new Member(memberId, "memberA", Grade.VIP);
