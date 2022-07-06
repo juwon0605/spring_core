@@ -11,19 +11,20 @@ import spring.spring_core.order.OrderServiceImpl;
 
 public class AppConfig {
 
-    public MemberService memberService() {
-        return new MemberServiceImpl(memberRepository());
-    }
+	public MemberService memberService() {
+		return new MemberServiceImpl(memberRepository());
+	}
 
-    public OrderService orderService() {
-        return new OrderServiceImpl(memberRepository(), discountPolicy());
-    }
+	public OrderService orderService() {
+		return new OrderServiceImpl(memberRepository(), discountPolicy());
+	}
 
-    private MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
-    }
+	private MemberRepository memberRepository() {
+		return new MemoryMemberRepository();
+	}
 
-    private DiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
-    }
+	private DiscountPolicy discountPolicy() {
+		return new FixDiscountPolicy();
+		// return new RateDiscountPolicy();
+	}
 }
