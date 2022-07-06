@@ -2,7 +2,7 @@ package spring.spring_core.member;
 
 public interface MemberService {
 
-    void join(Member member);
+	void join(Member member);
 
-    Member findMember(Long memberId);
+	Member findMember(Long memberId);
 }
