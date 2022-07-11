@@ -11,6 +11,17 @@ plugins {
     id 'checkstyle'
 }
 
+
+// C.2.1. java UTF-8 encoding
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+// C.2.2. .editorconfig 플러그인 설정
+editorconfig {
+    excludes = ['build']
+}
+check.dependsOn editorconfigCheck
+
 // C.2.3. Checkstyle 플러그인 설정
 checkstyle {
     maxWarnings = 0 // 규칙이 어긋나는 코드가 하나라도 있을 경우 빌드 fail을 내고 싶다면 이 선언을 추가한다.
@@ -34,10 +45,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-}
-
-// 위에 다가 놓으면 build error남
-// C.2.2. .editorconfig 플러그인 설정
-editorconfig {
-    excludes = ['build']
 }
