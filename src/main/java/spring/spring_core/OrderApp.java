@@ -12,7 +12,7 @@ import spring.spring_core.order.OrderService;
 public class OrderApp {
 
 	public static void main(String[] args) {
-		//        MemberService memberService = new MemberServiceImpl();
+		//        MemberService memberService = new MemberSer viceImpl();
 		//        OrderService orderService = new OrderServiceImpl(memberRepository, discountPolicy);
 
 		//  AppConfig를 통한 생성자 주입(DI: Dependency Injection, 의존관계 주입)
