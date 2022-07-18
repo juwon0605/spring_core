@@ -1,9 +1,13 @@
 package spring.spring_core.order;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import spring.spring_core.discount.DiscountPolicy;
 import spring.spring_core.member.Member;
 import spring.spring_core.member.MemberRepository;
 
+@Component
 public class OrderServiceImpl implements OrderService {
 
 	//    추상화와 구현체 모두 의존. DIP 원칙 위반.
@@ -17,6 +21,7 @@ public class OrderServiceImpl implements OrderService {
 
 	//  AppConfig를 통한 생성자 주입(DI: Dependency Injection, 의존관계 주입)
 	//  관심사 분리: 객체를 생성하고 연결하는 역할과 실행하는 역할 분리
+	@Autowired
 	public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
 		this.memberRepository = memberRepository;
 		this.discountPolicy = discountPolicy;

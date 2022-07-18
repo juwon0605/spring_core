@@ -3,6 +3,9 @@ package spring.spring_core.member;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemoryMemberRepository implements MemberRepository {
 
 	private static Map<Long, Member> store = new HashMap<>(); // 실무에서는 동시성 문제로 concurrent hashmap 사용
