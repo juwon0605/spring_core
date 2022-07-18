@@ -34,4 +34,16 @@ public class OrderServiceTest {
 		Order order = orderService.createOrder(memberId, "itemA", 10000);
 		Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
 	}
+
+	@Test
+	void filedInjectionTest() {
+
+		//테스트를 위해 setter 의존성 설정 함수가 필요하게 됨
+		//@Autowired 필드 주입을 쓸 이유가 없음. 테스트에서만 간단하게 사용.
+		//생성자 주입으로 명확하게 명시.
+		// orderService.setMemberRepository(new MemoryMemberRepository());
+		// orderService.setDiscountPolicy(new FixDiscountPolicy());
+
+		// orderService.createOrder(1L, "itemA", 18000);
+	}
 }

@@ -21,6 +21,9 @@ public class OrderServiceImpl implements OrderService {
 
 	//  AppConfig를 통한 생성자 주입(DI: Dependency Injection, 의존관계 주입)
 	//  관심사 분리: 객체를 생성하고 연결하는 역할과 실행하는 역할 분리
+	// @Autowired
+	//생성자 하나 있으면 생략 가능
+
 	@Autowired
 	public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
 		this.memberRepository = memberRepository;
