@@ -23,6 +23,8 @@ public class AppConfig {
 	//call AppConfig.memberRepository
 
 	//실제 호출
+	//@Configuration -> AppConfig@CGLIB라는 자식 클래스를 생성해서 인스턴스로 주입 -> 싱글톤 보장
+	//만약 @Configuration 없이 @Bean만 사용 -> 싱글톤 보장 안함
 	//call AppConfig.memberService
 	//call AppConfig.memberRepository
 	//call AppConfig.orderService
