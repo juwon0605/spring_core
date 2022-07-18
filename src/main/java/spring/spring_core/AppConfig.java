@@ -15,19 +15,34 @@ import spring.spring_core.order.OrderServiceImpl;
 @Configuration
 public class AppConfig {
 
+	//예를 들어 순차적으로 실행될 때 예상(실제는 실행 순서를 보장하지는 않음)
+	//call AppConfig.memberService
+	//call AppConfig.memberRepository
+	//call AppConfig.memberRepository
+	//call AppConfig.orderService
+	//call AppConfig.memberRepository
+
+	//실제 호출
+	//call AppConfig.memberService
+	//call AppConfig.memberRepository
+	//call AppConfig.orderService
+
 	@Bean
 	public MemberService memberService() {
+		System.out.println("call AppConfig.memberService");
 		return new MemberServiceImpl(memberRepository());
 	}
 
 	@Bean
-	public OrderService orderService() {
-		return new OrderServiceImpl(memberRepository(), discountPolicy());
+	public MemberRepository memberRepository() {
+		System.out.println("call AppConfig.memberRepository");
+		return new MemoryMemberRepository();
 	}
 
 	@Bean
-	public MemberRepository memberRepository() {
-		return new MemoryMemberRepository();
+	public OrderService orderService() {
+		System.out.println("call AppConfig.orderService");
+		return new OrderServiceImpl(memberRepository(), discountPolicy());
 	}
 
 	@Bean
