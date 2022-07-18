@@ -17,4 +17,12 @@ import org.springframework.context.annotation.FilterType;
 )
 public class AutoAppConfig {
 
+	//원래는 수동 vs 자동 충돌시 수동이 우선권을 가진다
+	//지금은 운영상의 복잡함과 버그 등의 문제로 충돌이 나게 설정되어 있다
+	//application.properties에서 설정할 수 있음
+	// @Bean(name = "memoryMemberRepository")
+	// public MemberRepository memberRepository() {
+	// 	return new MemoryMemberRepository();
+	// }
+
 }
