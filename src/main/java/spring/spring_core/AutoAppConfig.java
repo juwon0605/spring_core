@@ -1,16 +1,8 @@
 package spring.spring_core;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
-
-import spring.spring_core.discount.DiscountPolicy;
-import spring.spring_core.member.MemberRepository;
-import spring.spring_core.member.MemoryMemberRepository;
-import spring.spring_core.order.OrderService;
-import spring.spring_core.order.OrderServiceImpl;
 
 @Configuration
 @ComponentScan(
@@ -33,18 +25,18 @@ public class AutoAppConfig {
 	// 	return new MemoryMemberRepository();
 	// }
 
-	@Autowired
-	MemberRepository memberRepository;
-	@Autowired
-	DiscountPolicy discountPolicy;
+	// @Autowired
+	// MemberRepository memberRepository;
+	// @Autowired
+	// DiscountPolicy discountPolicy;
+	//
+	// @Bean
+	// OrderService orderService() {
+	// 	return new OrderServiceImpl(memberRepository, discountPolicy);
+	// }
 
-	@Bean
-	OrderService orderService() {
-		return new OrderServiceImpl(memberRepository, discountPolicy);
-	}
-
-	@Bean(name = "memoryMemberRepository")
-	MemberRepository memberRepository() {
-		return new MemoryMemberRepository();
-	}
+	// @Bean(name = "memoryMemberRepository")
+	// MemberRepository memberRepository() {
+	// 	return new MemoryMemberRepository();
+	// }
 }
