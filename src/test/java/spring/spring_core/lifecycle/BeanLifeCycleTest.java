@@ -19,7 +19,9 @@ class BeanLifeCycleTest {
 	@Configuration
 	static class LifeCycleConfig {
 
-		@Bean(initMethod = "init", destroyMethod = "close")
+		@Bean
+		//외부라이브러리 같은 경우는 아래와 같이 직접 설정
+		// @Bean(initMethod = "init", destroyMethod = "close")
 		public NetworkClient networkClient() {
 			NetworkClient networkClient = new NetworkClient();
 			networkClient.setUrl("http://spring-core.dev");
