@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Provider;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,20 +37,34 @@ public class SingletonWithPrototypeTest1 {
 
 		ClientBean clientBean2 = ac.getBean(ClientBean.class);
 		int count2 = clientBean2.logic();
-		assertThat(count2).isEqualTo(2);
+		assertThat(count2).isEqualTo(1);
 	}
 
 	@Scope("singleton")
 	static class ClientBean {
-		//생성시점에 주입
-		private final PrototypeBean prototypeBean;
 
+		// @Autowired
+		// //스프링이 자동으로 빈에 등록
+		// private ObjectProvider<PrototypeBean> prototypeBeanObjectProvider;
+		// //Provider가 Factory를 상속받고 편의기능(옵션, 스트림 등) 몇 개 추가
+		// // private ObjectFactory<PrototypeBean> prototypeBeanObjectProvider;
+		//
+		// public int logic() {
+		// 	PrototypeBean prototypeBean = prototypeBeanObjectProvider.getObject();
+		// 	prototypeBean.addCount();
+		// 	return prototypeBean.getCount();
+		// }
+
+		//스프링에 덜 의존적인 자바 표준 기술 사용
+		//단위테스트를 만들거나 mock 코드를 만들기 훨씬 쉽다
+		//단, 별도의 라이브러리가 필요하다
+		//JPA는 이미 표준이 됐지만, 스프링과 자바 표준은 기준이 애매하다
+		//기능보고 더 적합하거나 더 편한 걸 고르면 된다. 웬만해서는 스프링 권장. 사실상 표준
 		@Autowired
-		public ClientBean(PrototypeBean prototypeBean) {
-			this.prototypeBean = prototypeBean;
-		}
+		private Provider<PrototypeBean> prototypeBeanProvider;
 
 		public int logic() {
+			PrototypeBean prototypeBean = prototypeBeanProvider.get();
 			prototypeBean.addCount();
 			return prototypeBean.getCount();
 		}
