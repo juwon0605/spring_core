@@ -2,7 +2,7 @@ package spring.spring_core.order;
 
 import org.springframework.stereotype.Component;
 
-import lombok.RequiredArgsConstructor;
+import spring.spring_core.annotation.MainDiscountPolicy;
 import spring.spring_core.discount.DiscountPolicy;
 import spring.spring_core.member.Member;
 import spring.spring_core.member.MemberRepository;
@@ -11,7 +11,7 @@ import spring.spring_core.member.MemberRepository;
 //final이 있는 필드를 파라미터로 받아 생성자를 자동 생성
 //자바의 애노테이션 프로세서라는 기능을 이용해서 컴파일 시점에 생성자 코드를 자동 생성
 //'class'를 열어보면 다음 코드가 추가되어 있음
-@RequiredArgsConstructor
+// @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
 	//    추상화와 구현체 모두 의존. DIP 원칙 위반.
@@ -28,10 +28,10 @@ public class OrderServiceImpl implements OrderService {
 	// @Autowired
 	//생성자 하나 있으면 생략 가능
 	//@RequiredArgsConstructor로 대체
-	// public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-	// 	this.memberRepository = memberRepository;
-	// 	this.discountPolicy = discountPolicy;
-	// }
+	public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
+		this.memberRepository = memberRepository;
+		this.discountPolicy = discountPolicy;
+	}
 
 	@Override
 	public Order createOrder(Long memberId, String itemName, int itemPrice) {
